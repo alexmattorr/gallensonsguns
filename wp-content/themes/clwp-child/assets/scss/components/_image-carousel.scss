@@ -1,0 +1,10 @@
+.images.carousel {
+  figure {
+    @include bg-cover(center);
+    @include aspect-ratio(4,3);
+  }
+
+  .slick-dots {
+    margin-top: map-get($spacing, 40);
+  }
+}

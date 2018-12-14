@@ -1,0 +1,12 @@
+body {
+  background-color: $light-gray;
+}
+
+.max-container {
+  margin: 0 auto;
+  width: 100%;  
+  max-width: map-get($breakpoints, xxlarge);
+  background-color: $white;
+  border-left: 1px solid $medium-gray;
+  border-right: 1px solid $medium-gray;
+}

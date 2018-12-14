@@ -1,0 +1,39 @@
+.side-by-side {
+  background-color: $white;
+  border: $border;
+
+  @include breakpoint(medium) {
+    &:nth-child(even) {
+      .column {
+        &:first-child {
+          order: 2;
+        }
+        &:nth-child(2) {
+          order: 1;
+        }
+      }
+    }
+  }
+
+  .column {
+    &:first-child {
+      @include bg-cover(center);
+      min-height: 250px;
+
+      @include breakpoint(small down) {
+        min-height: 200px;
+      }
+    }
+
+    &:nth-child(2) {
+      display: flex;
+      align-items: center;
+      padding: map-get($spacing, 20);
+    }
+  }
+
+  img {
+    margin-bottom: map-get($spacing, 20);
+    max-width: 150px;
+  }
+}

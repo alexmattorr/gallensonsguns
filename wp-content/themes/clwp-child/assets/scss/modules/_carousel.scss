@@ -1,0 +1,75 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .slick-list {
+    width: 100%;
+  }
+
+  .slick-dots {
+    position: relative;
+    bottom: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 10px;
+      width: 10px;
+    }
+
+    button {
+      padding: 0;
+      width: 10px;
+      height: 10px;
+      background-color: transparent;
+      border: 2px solid $black;
+      border-radius: 50%;
+      transition: background-color ease .3s;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    .slick-active button {
+      background-color: $black;
+    }
+  }
+
+  .slick-arrow {
+    position: absolute;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: transparent;
+    cursor: pointer;
+    transition: transform ease .3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.slick-prev {
+      left: - map-get($spacing, 20);
+      background-image: url('../images/icons/prev.svg');
+    }
+
+    &.slick-next {
+      right: - map-get($spacing, 20);
+      background-image: url('../images/icons/next.svg');
+    }
+  }
+
+  a,
+  .slick-slide {
+    outline: none !important;
+  }
+}

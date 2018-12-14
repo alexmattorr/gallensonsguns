@@ -1,0 +1,12 @@
+footer {
+  padding: map-get($spacing, 40) 0;
+  background-color: $green;
+
+  .logo {
+    color: $tan;
+
+    &:hover {
+      color: $tan;
+    }
+  }
+}

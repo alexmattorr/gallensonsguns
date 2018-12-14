@@ -1,0 +1,73 @@
+.buttons {
+  text-align: center;
+
+  &.two .button {
+    width: 250px;
+
+    @include breakpoint(small down) {
+      width: 100%;
+
+      &:last-child {
+        margin-top: map-get($spacing, 10);
+      }
+    }
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: map-get($spacing, 10) map-get($spacing, 20);
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: $bold;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+
+  &.primary {
+    background-color: $orange;
+    color: $white !important;
+    border-color: $orange;
+    transition: background-color ease .3s, border ease .3s;
+
+    &:hover {
+      background-color: darken($orange, 10%);
+      border-color: darken($orange, 10%);
+    }
+  }
+
+  &.secondary {
+    background-color: $white;
+    color: $black !important;
+    border-color: $white;
+    transition: background-color ease .3s, border ease .3s;
+
+    &:hover {
+      background-color: darken($white, 10%);
+      border-color: darken($white, 10%);
+    }
+  }
+}
+
+.alm-load-more-btn {
+  padding: map-get($spacing, 10) map-get($spacing, 20) !important;
+  margin-bottom: 0 !important;
+  height: 45 !important;
+  width: 175px !important;
+  line-height: 16px !important;
+  font-size: 14px !important;
+  font-weight: $bold;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: $orange !important;
+  color: $white !important;
+  border-color: $orange !important;
+  border-radius: 0 !important;
+  transition: background-color ease .3s, border ease .3s !important;
+
+  &:hover {
+    background-color: darken($orange, 10%) !important;
+    border-color: darken($orange, 10%) !important;
+  }
+}

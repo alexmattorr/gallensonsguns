@@ -1,0 +1,1 @@
+<a href="<?= get_home_url(); ?>" class="logo">Gallenson<sup>’</sup>s<span>gun shop</span></a>

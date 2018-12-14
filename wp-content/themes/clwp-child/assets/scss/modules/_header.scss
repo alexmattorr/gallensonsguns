@@ -1,0 +1,58 @@
+header {
+  border-bottom: $border;
+
+  > .column {
+    display: flex;
+    align-items: center;
+  }
+
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+
+    a {
+      font-weight: $bold;
+      text-transform: uppercase;
+    }
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+}
+
+header.header-top {
+  padding: map-get($spacing, 5) 0;
+
+  > .column {
+    justify-content: flex-end;
+  }
+
+  li {
+    margin-left: map-get($spacing, 10);
+  }
+
+  a {
+    font-size: 10px;
+  }
+}
+
+header.header-bottom {
+  padding: map-get($spacing, 10) 0;
+
+  > .column {
+    justify-content: space-between;
+  }
+
+  li {
+    margin-left: map-get($spacing, 20);
+
+    a {
+      font-size: 12px;
+    }
+  }
+}

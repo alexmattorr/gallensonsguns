@@ -1,0 +1,135 @@
+.products {
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  &.carousel {
+    .slick-track {
+      display: flex;
+    }
+
+    .slick-slide {
+      margin-bottom: map-get($spacing, 40);
+      height: auto;
+
+      > div,
+      .column {
+        height: 100%;
+      }
+    }
+  }
+
+  &:not(.carousel) {
+    display: flex;
+    flex-wrap: wrap;
+
+    .column {
+      width: percentage(1/4);
+      flex: unset;
+
+      &:nth-child(n+5) {
+        margin-top: map-get($spacing, 20);
+      }
+    }
+
+    @include breakpoint(medium down) {
+      .column {
+        flex: auto;
+        width: percentage(1/2);
+
+        &:nth-child(n+3) {
+          margin-top: map-get($spacing, 20);
+        }
+      }
+    }
+  }
+}
+
+.product {
+  position: relative;
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  transition: box-shadow ease .3s;
+
+  figure {
+    @include bg-cover(center);
+    @include aspect-ratio(4,3);
+    background-color: $tan;
+  }
+
+  .product-text {
+    padding-bottom: map-get($spacing, 40);
+  }
+
+  span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &:hover {
+    color: $black;
+    box-shadow: $shadow;
+
+    .product-button {
+      background-color: $orange;
+      color: $white;
+    }
+  }
+
+  @include breakpoint(medium down) {
+    figure {
+      @include aspect-ratio(16,9);
+    }
+  }
+}
+
+.product-text,
+.product-button {
+  padding: map-get($spacing, 10);
+  text-align: center;
+}
+
+.product-text {
+  h6 {
+    margin-bottom: 0;
+    font-weight: $bold;
+    text-transform: none;
+  }
+
+  @include breakpoint(medium down) {
+    border-left: $border;
+    border-right: $border;
+  }
+
+  @include breakpoint(small down) {
+    h6 {
+      font-size: 12px;
+    }
+  }
+}
+
+.product-small {
+  font-size: 10px;
+  font-weight: $light;
+}
+
+.product-price {
+  color: $orange;
+  font-size: 16px;
+  font-weight: $bold;
+}
+
+.product-button {
+  display: block;
+  color: transparent;
+  font-size: 12px;
+  font-weight: $bold;
+  transition: background-color ease .3s, color ease .3s;
+
+  @include breakpoint(medium down) {
+    background-color: $orange;
+    color: $white;
+  }
+}

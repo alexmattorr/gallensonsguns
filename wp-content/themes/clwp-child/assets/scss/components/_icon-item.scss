@@ -1,0 +1,29 @@
+.icon-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:nth-child(n+5) {
+    margin-top: map-get($spacing, 40);
+  }
+  
+  @include breakpoint(small down) {
+    margin-top: map-get($spacing, 20);
+  } 
+
+  a {
+    display: inline-block;
+    max-width: 80%;
+
+    &:hover {
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  img {
+    max-height: 125px;
+    transition: transform ease .3s;
+  }
+}

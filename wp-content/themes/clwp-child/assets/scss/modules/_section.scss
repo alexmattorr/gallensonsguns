@@ -1,0 +1,29 @@
+section {
+  padding: map-get($spacing, 80) 0;
+  border-bottom: $border;
+  overflow: hidden;
+
+  &.bg-image {
+    @include bg-cover(center);
+
+    * {
+      color: $white;
+    }
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .row {
+    margin-bottom: map-get($spacing, 40);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.row {
+  outline: none !important;
+}

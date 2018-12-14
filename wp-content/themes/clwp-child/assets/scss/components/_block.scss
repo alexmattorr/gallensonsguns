@@ -1,0 +1,34 @@
+.block {
+  @include aspect-ratio(4,3);
+  @include bg-cover(center);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: map-get($spacing, 20);
+  transition: box-shadow ease .3s;
+  cursor: pointer;
+
+  span {
+    position: absolute;
+    padding: map-get($spacing, 10);
+    font-weight: $bold;
+    text-transform: uppercase;
+    background-color: rgba($white, .85);
+    color: $black;
+    transition: background-color ease .3s;
+  }
+
+
+  @include breakpoint(small down) {
+    margin-top: map-get($spacing, 10);
+  }
+
+  &:hover {
+    box-shadow: $shadow;
+
+    span {
+      background-color: rgba($white, 1);
+    }
+  }
+}

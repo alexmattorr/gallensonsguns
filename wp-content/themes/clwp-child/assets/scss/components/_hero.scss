@@ -1,0 +1,76 @@
+.hero {
+  padding: 0;
+
+  &.carousel {
+
+    .slick-dots {
+      position: absolute;
+      bottom: map-get($spacing, 20);
+
+      button {
+        border-color: $white;
+      }
+
+      .slick-active button {
+        background-color: $white;
+      }
+    }
+
+    .slick-prev {
+      left: map-get($spacing, 20);
+      background-image: url('../images/icons/prev-white.svg');
+    }
+
+    .slick-next {
+      right: map-get($spacing, 20);
+      background-image: url('../images/icons/next-white.svg');
+    }
+  }
+
+  .column {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    @include bg-cover(center);
+
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to bottom right, rgba($black, 0.25), rgba($black, 0.75));
+    }
+
+    > div {
+      position: relative;
+      z-index: 2;
+      color: $white;
+      text-align: center;
+    }
+  }
+
+  h1, h2 {
+    margin-bottom: map-get($spacing, 20);
+    line-height: 1em;
+
+    @include breakpoint(medium) {
+      font-size: 100px;
+    }
+  }
+
+  h6 {
+    margin: 0 auto;
+    max-width: 900px;
+  }
+
+  .buttons {
+    margin-top: map-get($spacing, 40);
+  }
+
+  .button {
+    margin-bottom: 0;
+  }
+}

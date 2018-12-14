@@ -1,0 +1,43 @@
+// creates background color classes
+@each $color in $colors {
+  .bg-#{nth($color, 1)} {
+    background-color: #{nth($color, 2)};
+  }
+}
+
+// creates color classes
+@each $color in $colors {
+  .#{nth($color, 1)} {
+    color: #{nth($color, 2)};
+  }
+}
+
+$shadow: 0 8px 16px 0 rgba($black, 0.4);
+$border: 1px solid $medium-gray;
+
+.no-margin { margin: 0 !important; }
+.no-padding { padding: 0 !important; }
+
+.light { font-weight: $light; }
+.medium { font-weight: $medium; }
+.bold { font-weight: $bold; }
+
+.uppercase { text-transform: uppercase; }
+.text-center { text-align: center; }
+
+.flex-between { 
+  display: flex; 
+  align-items: center;
+  justify-content: space-between 
+}
+
+.flex-center { 
+  display: flex; 
+  justify-content: center; 
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

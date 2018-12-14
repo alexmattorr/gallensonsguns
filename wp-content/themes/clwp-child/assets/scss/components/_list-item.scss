@@ -1,0 +1,42 @@
+.list-item {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto map-get($spacing, 40);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  div:first-child {
+    justify-content: flex-end;
+    padding: 0 map-get($spacing, 20);
+    width: percentage(1/5);
+
+    @include breakpoint(small down) {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  div:nth-child(2) {
+    width: percentage(4/5);
+
+    @include breakpoint(small down) {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+$light: 300;
+$medium: 400;
+$bold: 700;
+
+h1,h2,h3,h4,h5,h6,p,li,a,button {
+  letter-spacing: .15rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  sup {
+    font-size: 60%;
+  }
+}
+
+strong {
+  font-weight: $bold;
+}
+
+h1,h2,h3 {
+  font-family: $head-font-family;
+  text-transform: uppercase;
+}
+
+h4,h5,h6 {
+  font-weight: $bold;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 14px;
+  line-height: 19px;
+}
+
+span.small {
+  font-size: 10px;
+  line-height: 12px;
+}
