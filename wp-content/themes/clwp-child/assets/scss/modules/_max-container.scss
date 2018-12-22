@@ -1,5 +1,9 @@
 body {
   background-color: $light-gray;
+
+  &.modal-open {
+    overflow-y: hidden;
+  }
 }
 
 .max-container {

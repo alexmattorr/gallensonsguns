@@ -10,6 +10,8 @@
     
     </div> <!-- END MAX CONTAINER -->
 
+    <div class="modal-bg"></div>
+
     <?php 
         do_action( 'clwp_layout_end' ); 
         wp_footer();

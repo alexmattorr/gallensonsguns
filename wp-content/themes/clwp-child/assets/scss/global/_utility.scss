@@ -15,6 +15,14 @@
 $shadow: 0 8px 16px 0 rgba($black, 0.4);
 $border: 1px solid $medium-gray;
 
+.mobile-only {
+  display: none;
+
+  @include breakpoint(medium down) {
+    display: none;
+  }
+}
+
 .no-margin { margin: 0 !important; }
 .no-padding { padding: 0 !important; }
 
