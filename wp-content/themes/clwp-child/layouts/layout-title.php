@@ -3,7 +3,8 @@
   $hash_title = str_replace(' ', '-', strtolower($title));
   $text = get_sub_field('text');
 ?>
-<div id="<?= $hash_title; ?>" class="row">
+<div class="row">
+  <div id="<?= $hash_title; ?>" class="invisible-anchor"></div>
   <div class="column title">
     <?php if($title): ?>
       <h3><?= $title; ?></h3>

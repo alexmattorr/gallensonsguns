@@ -34,7 +34,7 @@ header {
     text-decoration: none !important;
   }
 
-  &.is-fixed {
+  &.header-fixed {
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -85,8 +85,10 @@ header.header-bottom {
 
 .header-menu {
   @include breakpoint(medium down) {
+    overflow-y: scroll;
     position: fixed;
-    top: 64.75px;
+    top: 66px;
+    padding-bottom: 66px;
     transform: translateX(200%);
     right: 0;
     width: 50%;

@@ -70,6 +70,7 @@ $light-gray: #f7f7f7;
 $medium-gray: #dfdfdf;
 $dark-gray: #6c757d;
 $black: #222222;
+$blackout: #111111;
 
 $colors: (
   orange: $orange,
@@ -127,8 +128,8 @@ $breakpoint-classes: (small medium large);
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
-  small: map-get($spacing, 20),
-  medium: map-get($spacing, 20),
+  small: map-get($spacing, 40),
+  medium: map-get($spacing, 40),
 );
 $grid-column-align-edge: true;
 $block-grid-max: 8;

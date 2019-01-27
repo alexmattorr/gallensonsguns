@@ -15,6 +15,12 @@
 $shadow: 0 8px 16px 0 rgba($black, 0.4);
 $border: 1px solid $medium-gray;
 
+.hide-mobile {
+  @include breakpoint(small down) {
+    display: none;
+  }
+}
+
 .mobile-only {
   display: none;
 

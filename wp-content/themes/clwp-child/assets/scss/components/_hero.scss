@@ -19,11 +19,19 @@
     .slick-prev {
       left: map-get($spacing, 20);
       background-image: url('../images/icons/prev-white.svg');
+
+      @include breakpoint(small down) {
+        left: map-get($spacing, 10);
+      }
     }
 
     .slick-next {
       right: map-get($spacing, 20);
       background-image: url('../images/icons/next-white.svg');
+
+      @include breakpoint(small down) {
+        right: map-get($spacing, 10);
+      }
     }
   }
 
@@ -35,9 +43,15 @@
     height: 500px;
     @include bg-cover(center);
 
+    @include breakpoint(medium down) {
+      height: 350px;
+    }
+
     &:after {
       content: '';
       position: absolute;
+      top: 0;
+      left: 0;
       z-index: 1;
       width: 100%;
       height: 100%;
@@ -56,7 +70,7 @@
     margin-bottom: map-get($spacing, 20);
     line-height: 1em;
 
-    @include breakpoint(medium) {
+    @include breakpoint(large) {
       font-size: 100px;
     }
   }
@@ -64,6 +78,7 @@
   h6 {
     margin: 0 auto;
     max-width: 900px;
+    padding: 0 map-get($spacing, 10);
   }
 
   .buttons {

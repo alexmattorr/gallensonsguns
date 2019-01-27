@@ -22,7 +22,7 @@
       $query = array(
         'post_type' => 'used_guns',
         'posts_per_page' => 8,
-        'order' => 'asc',
+        'order' => 'DESC',
         'orderby' => 'date',
       );
 
@@ -64,7 +64,7 @@
 </section>
 
 <section>
-  <?php echo do_shortcode('[ajax_load_more scroll="false" container_type="div" css_classes="row products" post_type="used_guns" posts_per_page="8" offset="8" transition_container="false" button_label="View More" button_loading_label="Loading"]'); ?>
+  <?= do_shortcode('[ajax_load_more scroll="false" container_type="div" css_classes="row products" post_type="used_guns" orderby="menu_order" posts_per_page="8" offset="8" post__not_in=' . $post_id_list . ' transition_container="false" button_label="View More" button_loading_label="Loading"]'); ?>
 </section>
 
 <?php get_footer();

@@ -58,10 +58,10 @@
   }
 
   .product-text {
-    padding-bottom: map-get($spacing, 40);
+    padding-bottom: 60px;
   }
 
-  span {
+  span.product-button {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -92,25 +92,33 @@
 }
 
 .product-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 175px;
+
+  h6, p {
+    width: 100%;
+  }
+
   h6 {
     margin-bottom: 0;
     font-weight: $bold;
     text-transform: none;
   }
 
+  p {
+    margin-bottom: 0;
+  }
+
   @include breakpoint(medium down) {
     border-left: $border;
     border-right: $border;
   }
-
-  @include breakpoint(small down) {
-    h6 {
-      font-size: 12px;
-    }
-  }
 }
 
 .product-small {
+  display: block;
   font-size: 10px;
   font-weight: $light;
 }

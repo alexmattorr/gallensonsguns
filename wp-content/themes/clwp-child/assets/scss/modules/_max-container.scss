@@ -1,9 +1,6 @@
 body {
   background-color: $light-gray;
-
-  &.modal-open {
-    overflow-y: hidden;
-  }
+  overflow-x: hidden;
 }
 
 .max-container {
@@ -13,4 +10,44 @@ body {
   background-color: $white;
   border-left: 1px solid $medium-gray;
   border-right: 1px solid $medium-gray;
+
+  &.header-fixed {
+    padding-top: 64.75px;
+  }
+
+  @include breakpoint(medium down) {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+.error404 {
+  h1 {
+    margin: 0;
+    line-height: 1em;
+
+    &.top {
+      font-size: 200px;
+
+      @include breakpoint(small down) {
+        font-size: 100px;
+      }
+    }
+
+    &.bottom {
+      font-size: 100px;
+
+      @include breakpoint(small down) {
+        font-size: 50px;
+      }
+    }
+  }
+
+  h5 {
+    margin: map-get($spacing, 40);
+  }
+}
+
+.error-container {
+  text-align: center;
 }

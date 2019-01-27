@@ -11,3 +11,10 @@
     max-width: 900px;
   }
 }
+
+.invisible-anchor {
+  display: block;
+  position: relative;
+  top: -150px;
+  visibility: hidden;
+}

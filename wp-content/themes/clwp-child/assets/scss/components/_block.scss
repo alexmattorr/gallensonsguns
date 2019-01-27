@@ -1,16 +1,17 @@
 .block {
   @include aspect-ratio(4,3);
   @include bg-cover(center);
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   padding: map-get($spacing, 20);
   transition: box-shadow ease .3s;
   cursor: pointer;
 
   span {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(50% - 22px);
     padding: map-get($spacing, 10);
     font-weight: $bold;
     text-transform: uppercase;

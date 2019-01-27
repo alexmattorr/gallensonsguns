@@ -1,6 +1,20 @@
 footer {
+  display: flex;
+
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+}
+
+footer.top {
   padding: map-get($spacing, 40) 0;
-  background-color: $green;
+  background-color: $black;
+
+  .row {
+    max-width: none;
+    width: 100%;
+  }
 
   .logo {
     color: $tan;
@@ -8,5 +22,104 @@ footer {
     &:hover {
       color: $tan;
     }
+  }
+
+  address, a, * {
+    color: $light-gray;
+    font-size: 14px;
+    font-weight: $bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+
+  h2 {
+    margin-bottom: map-get($spacing, 20);
+    color: $white;
+    font-size: 100px;
+    text-align: center;
+
+    @include breakpoint(medium down) {
+      font-size: 50px;
+    }
+  }
+
+  @include breakpoint(small down) {
+    .logo, address, a, * {
+      text-align: center;
+    }
+  }
+}
+
+footer.bottom {
+  padding: map-get($spacing, 20) 0;
+  background-color: $blackout;
+  font-size: 12px;
+  color: $white;
+  font-weight: $bold;
+
+  .column {
+    display: flex;
+    align-items: center;
+
+    &:last-child {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.footer-menu-item {
+  margin-bottom: map-get($spacing, 10);
+
+  > a {
+    font-weight: bold;
+  }
+
+  > ul a {
+    color: $medium-gray;
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+
+ul.footer-social {
+  display: flex;
+  align-items: center;
+  margin: 0;
+
+  li {
+    margin-left: map-get($spacing, 10);
+    display: inline;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    color: $white;
+  }
+
+  svg {
+    height: 25px;
+    width: 25px;
+    fill: $white;
+  }
+}
+
+.footer-logo {
+  display: block;
+  text-align: center;
+
+  img {
+    margin-bottom: map-get($spacing, 10);
+    max-width: 200px;
+  }
+}
+
+.footer-main {
+  div {
+    margin-top: map-get($spacing, 10);
+  }
+
+  a {
+    word-wrap: break-word;
   }
 }

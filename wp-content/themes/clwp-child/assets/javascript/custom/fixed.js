@@ -1,17 +1,20 @@
 (function($){
   var fixed = {
     header : function() {
-      var header = $('header.header-bottom'),
+      var container = $('.max-container'),
+          header = $('header.header-bottom'),
           offset = header.offset().top,
-          fixed = 'is-fixed';
+          fixed = 'header-fixed';
 
       $(window).scroll(function(){
         var scroll = $(window).scrollTop();
       
         if (scroll >= offset) {
           header.addClass(fixed);
+          container.addClass(fixed);
         } else {
           header.removeClass(fixed);
+          container.removeClass(fixed);
         }
       });
     },
