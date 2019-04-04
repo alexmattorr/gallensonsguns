@@ -1,7 +1,7 @@
 <div class="alm-settings-feedback"></div>
 
 <div class="admin ajax-load-more settings" id="alm-settings">
-   
+
 	<div class="wrap main-cnkt-wrap">
 
 		<header class="header-wrap">
@@ -9,16 +9,16 @@
             <?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span>
             <em><?php _e('A powerful plugin to add infinite scroll functionality to your website.', 'ajax-load-more'); ?></em>
          </h1>
-         <?php alm_render_transient_notification(); ?>            
-         
-      </header>     
-      
-      <div class="ajax-load-more-inner-wrapper"> 
+         <?php alm_render_transient_notification(); ?>
 
-   	   <div class="cnkt-main">                
-            
+      </header>
+
+      <div class="ajax-load-more-inner-wrapper">
+
+   	   <div class="cnkt-main">
+
    			<?php //include_once( ALM_PATH . 'admin/includes/cta/sharing.php');	?>
-            
+
    	   	<?php
       	   	if(has_action('alm_cache_settings') || has_action('alm_layouts_installed') || has_action('alm_prev_post_settings')  || has_action('alm_paging_settings') || has_action('alm_seo_settings') || has_action('alm_theme_repeaters_settings')) {
        	   ?>
@@ -39,12 +39,12 @@
                      echo '<option value="4">'.__('Layouts', 'ajax-load-more').'</options>';
          	   	if(has_action('alm_paging_settings'))
                      echo '<option value="5">'.__('Paging', 'ajax-load-more').'</option>';
-         	   	if(has_action('alm_prev_post_settings'))
-                     echo '<option value="6">'.__('Previous Post', 'ajax-load-more').'</option>';
                   if(has_action('alm_rest_api_settings'))
-                     echo '<option value="7">'.__('REST API', 'ajax-load-more').'</option>';
+                     echo '<option value="6">'.__('REST API', 'ajax-load-more').'</option>';
                   if(has_action('alm_seo_settings'))
-                     echo '<option value="8">'.__('SEO', 'ajax-load-more').'</option>';
+                     echo '<option value="7">'.__('SEO', 'ajax-load-more').'</option>';
+         	   	if(has_action('alm_prev_post_settings'))
+                     echo '<option value="8">'.__('Single Posts', 'ajax-load-more').'</option>';
                   if(has_action('alm_theme_repeaters_settings'))
                      echo '<option value="9">'.__('Theme Repeaters', 'ajax-load-more').'</option>';
          	   ?>
@@ -62,18 +62,18 @@
    				$options = get_option( '_alm_settings' ); ?>
    				<div class="save-in-progress"></div>
    			</form>
-   
+
    	   </div>
-   	   <aside class="cnkt-sidebar">	   	   
+   	   <aside class="cnkt-sidebar">
    			<?php //include_once( ALM_PATH . 'admin/includes/cta/pro.php');	?>
    			<?php //include_once( ALM_PATH . 'admin/includes/cta/sharing.php'); ?>
    			<?php include_once( ALM_PATH . 'admin/includes/cta/resources.php');	?>
    			<?php include_once( ALM_PATH . 'admin/includes/cta/dyk.php');	?>
    			<?php include_once( ALM_PATH . 'admin/includes/cta/about.php'); ?>
    	   </aside>
-   	
-   	<div class="clear"></div>   
+
+   	<div class="clear"></div>
       </div>
-   	   
+
 	</div>
 </div>

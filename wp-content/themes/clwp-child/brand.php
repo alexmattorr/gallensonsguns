@@ -28,7 +28,7 @@
           $bg_image = get_field('highlight_image')['sizes']['large'];
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' )[0];
           $title = get_the_title();
-          $link = get_field('company_url');
+          $link = get_permalink();
       ?>
       <div class="row brand-side-by-side side-by-side">
         <div class="column small-12 medium-6" style="background-image: url('<?= $bg_image; ?>');"></div>
@@ -37,7 +37,7 @@
             <a href="<?= $link; ?>"><img src="<?= $image; ?>" alt="<?php the_title(); ?>"></a>
             <h4 style="display: none;"><?php the_title(); ?></h4>
             <?php the_content(); ?>
-            <a href="<?= $link; ?>" target="_blank">View Brand</a>
+            <a href="<?= $link; ?>">View Brand</a>
           </div>
         </div>
       </div>
@@ -66,10 +66,10 @@
         while ( $loop->have_posts() ) : $loop->the_post();
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' )[0];
           $title = get_the_title();
-          $link = get_field('company_url');
+          $link = get_permalink();
       ?>
       <div class="column small-6 medium-3 icon-item">
-        <a href="<?= $link; ?>" target="_blank">
+        <a href="<?= $link; ?>">
           <img src="<?= $image; ?>" alt="<?= $title; ?> Logo">
         </a>
       </div>

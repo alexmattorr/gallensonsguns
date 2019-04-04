@@ -137,9 +137,11 @@
                <p><?php _e('<strong>Note</strong>: The majority of premium themes have a custom callback function for displaying comments. Please see comments.php or functions.php within your theme directory to locate the callback function for your theme.', 'ajax-load-more'); ?></p>
             </div>
          </div>
-
+         
+         <div class="clear"></div>
+         <hr>
          <p class="warning-callout">
-            <?php _e('You must add the comments shortcode directly to your single template file using the <a href="https://developer.wordpress.org/reference/functions/do_shortcode/" target="_blank">do_shortcode</a> method. &raquo; <a href="https://connekthq.com/plugins/ajax-load-more/add-ons/comments/" target="_blank">View documentation</a>', 'ajax-load-more'); ?>
+            <?php _e('You must add the comments shortcode directly to your single template file using the <a href="https://developer.wordpress.org/reference/functions/do_shortcode/" target="_blank">do_shortcode</a> method.', 'ajax-load-more'); ?> <a class="button-small" href="https://connekthq.com/plugins/ajax-load-more/add-ons/comments/" target="_blank"><?php _e('View Docs', 'ajax-load-more'); ?></a>
          </p>
 
       </div>

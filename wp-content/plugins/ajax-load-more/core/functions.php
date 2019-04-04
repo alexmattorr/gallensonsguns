@@ -11,11 +11,11 @@
 function alm_get_pro_addon(){
 	$path_prefix = 'ajax-load-more-';
 	$url_prefix = 'https://connekthq.com/plugins/ajax-load-more/pro/';
-		
+
    $addons = array(
       array(
          'name' => __('Ajax Load More Pro', 'ajax-load-more'),
-         'intro' => __('Get instant access to all premium add-ons in a single installation.', 'ajax-load-more'), 
+         'intro' => __('Get instant access to all premium add-ons in a single installation.', 'ajax-load-more'),
          'desc' => __('The Pro bundle is installed as a single product with one license key and contains immediate access all premium add-ons.', 'ajax-load-more'),
          'action' => 'alm_pro_installed',
          'key' => 'alm_pro_license_key',
@@ -44,7 +44,7 @@ function alm_get_pro_addon(){
 function alm_get_addons(){
 	$path_prefix = 'ajax-load-more-';
 	$url_prefix = 'https://connekthq.com/plugins/ajax-load-more/add-ons/';
-	
+
    $addons = array(
       array(
          'name' => __('Cache', 'ajax-load-more'),
@@ -182,21 +182,6 @@ function alm_get_addons(){
 	   	'slug' => 'preloaded'
       ),
       array(
-         'name' => __('Previous Post', 'ajax-load-more'),
-         'intro' => __('An add-on to enable infinite scrolling of single posts.', 'ajax-load-more'),
-         'desc' => __('The Previous Post add-on will load single posts as you scroll and update the browser URL to the current post.', 'ajax-load-more'),
-         'action' => 'alm_prev_post_installed',
-         'key' => 'alm_prev_post_license_key',
-         'status' => 'alm_prev_post_license_status',
-         'settings_field' => 'alm_prev_post_license',
-         'img' => 'img/add-ons/prev-post-add-on.jpg',
-         'url' => $url_prefix .'previous-post/',
-         'item_id' => ALM_PREV_POST_ITEM_NAME,
-         'version' => 'ALM_PREV_POST_VERSION',
-	   	'path' => $path_prefix .'previous-post',
-	   	'slug' => 'previous-post'
-      ),
-      array(
          'name' => __('Search Engine Optimization', 'ajax-load-more'),
          'intro' => __('Generate unique paging URLs with every Ajax Load More query.', 'ajax-load-more'),
          'desc' => __('The SEO add-on will optimize your ajax loaded content for search engines by generating unique URLs with every query.', 'ajax-load-more'),
@@ -210,6 +195,21 @@ function alm_get_addons(){
          'version' => 'ALM_SEO_VERSION',
 	   	'path' => $path_prefix .'seo',
 	   	'slug' => 'seo'
+      ),
+      array(
+         'name' => __('Single Posts', 'ajax-load-more'),
+         'intro' => __('An add-on to enable infinite scrolling of single posts.', 'ajax-load-more'),
+         'desc' => __('The Single Posts add-on will load full posts as you scroll and update the browser URL to the current post.', 'ajax-load-more'),
+         'action' => 'alm_prev_post_installed',
+         'key' => 'alm_prev_post_license_key',
+         'status' => 'alm_prev_post_license_status',
+         'settings_field' => 'alm_prev_post_license',
+         'img' => 'img/add-ons/prev-post-add-on.jpg',
+         'url' => $url_prefix .'single-post/',
+         'item_id' => ALM_PREV_POST_ITEM_NAME,
+         'version' => 'ALM_PREV_POST_VERSION',
+	   	'path' => $path_prefix .'previous-post',
+	   	'slug' => 'previous-post'
       ),
       array(
          'name' => __('Theme Repeaters', 'ajax-load-more'),
@@ -329,12 +329,12 @@ function alm_css_disabled($setting) {
 */
 
 function alm_do_inline_css($setting) {
-	
+
 	// Exit if this is a REST API request
 	if(defined('REST_REQUEST')){
 		if(REST_REQUEST) return false;
 	}
-	
+
 	$options = get_option( 'alm_settings' );
 	$inline = false;
 	if(!isset($options[$setting]) || $options[$setting] === '1'){
@@ -353,22 +353,22 @@ function alm_do_inline_css($setting) {
 * @return                 html
 * @since 3.7
 */
-function alm_loop($repeater, $type, $theme_repeater, $alm_found_posts = '', $alm_page = '', $alm_item = '', $alm_current = ''){         
-   ob_start();	 
-     
+function alm_loop($repeater, $type, $theme_repeater, $alm_found_posts = '', $alm_page = '', $alm_item = '', $alm_current = ''){
+   ob_start();
+   
    // Theme Repeater
-	if($theme_repeater !== 'null' && has_filter('alm_get_theme_repeater')){	
-		do_action('alm_get_theme_repeater', $theme_repeater, $alm_found_posts, $alm_page, $alm_item, $alm_current); // Returns an include file		
-	} 
+	if($theme_repeater !== 'null' && has_filter('alm_get_theme_repeater')){
+		do_action('alm_get_theme_repeater', $theme_repeater, $alm_found_posts, $alm_page, $alm_item, $alm_current); // Returns an include file
+	}
 	// Standard Repeater Templates
-	else {		   			
+	else {
 		$file = alm_get_current_repeater($repeater, $type);
-      include($file);      
-	}	
-	
+      include($file);
+	}
+
 	$return = ob_get_contents();
-	ob_end_clean();	
-	return $return;   
+	ob_end_clean();
+	return $return;
 }
 
 
@@ -399,32 +399,32 @@ function alm_get_current_repeater($repeater, $type) {
 		}
 
 	}
-	
+
    // Custom Repeaters v2
 	elseif( $type == 'template_' && has_action('alm_unlimited_installed' )){
-   	
-   	
+
+
    	// Custom Repeaters 2.5+
    	if(ALM_UNLIMITED_VERSION >= '2.5'){
-      	
+
       	// Get path to repeater (alm_templates)
 			$base_dir = AjaxLoadMore::alm_get_repeater_path();
 			$include = $base_dir .'/'. $template .'.php';
-      	
+
    	} else {
-      	
+
    		global $wpdb;
    		$blog_id = $wpdb->blogid;
-   		
+
    		$include = ($blog_id > 1) ? ALM_UNLIMITED_PATH. 'repeaters/'. $blog_id .'/'. $template .'.php' : ALM_UNLIMITED_PATH. 'repeaters/'. $template .'.php';
-   		
+
 		}
 
 		if(!file_exists($include)){ //confirm file exists
 		   $include = alm_get_default_repeater();
 		}
 	}
-	
+
 	// Default repeater
 	else{
 		$include = alm_get_default_repeater();
@@ -831,11 +831,11 @@ function alm_get_canonical_url(){
 *  @since 2.13.0
 */
 function alm_get_page_slug($post){
-   
+
    // Exit if admin
    if(is_admin()) return false;
 
-	if(!is_archive()){ 
+	if(!is_archive()){
    	// If not archive, set the post slug
 		if(is_front_page() || is_home()){
 			$slug = 'home';
@@ -907,8 +907,8 @@ function alm_get_page_slug($post){
 *  @return $post_id;
 *  @since 3.0.1
 */
-function alm_get_page_id($post){  
-   
+function alm_get_page_id($post){
+
    // Exit if admin
    if(is_admin()) return false;
 
@@ -1024,8 +1024,8 @@ function alm_convert_dashes_to_underscore($string = ''){
 *  @return array
 *  @since 3.7
 */
-function alm_sticky_post__not_in($ids = '', $not_in = ''){   
-   
+function alm_sticky_post__not_in($ids = '', $not_in = ''){
+
    if(!empty($not_in)){
       $new_array = array();
       foreach($ids as $id){
@@ -1034,8 +1034,8 @@ function alm_sticky_post__not_in($ids = '', $not_in = ''){
          }
       }
       $ids = $new_array;
-      
-   } 
-   
-   return $ids;   
+
+   }
+
+   return $ids;
 }

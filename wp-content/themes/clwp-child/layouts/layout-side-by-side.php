@@ -1,4 +1,4 @@
-<div class="row side-by-sides">
+<div class="side-by-sides">
   <?php
     if( have_rows('side_by_side') ):
       while ( have_rows('side_by_side') ) : the_row();

@@ -42,7 +42,7 @@
 //  37. Top Bar
 
 @import '../../components/foundation-sites/scss/util/util';
-@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Roboto:400,700');
 
 // 1. Global
 // ---------
@@ -94,7 +94,7 @@ $foundation-palette: (
 
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Open Sans', sans-serif;
+$body-font-family: 'Roboto', sans-serif;
 $head-font-family: 'Fjalla One', sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;

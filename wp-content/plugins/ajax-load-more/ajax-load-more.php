@@ -7,14 +7,14 @@ Text Domain: ajax-load-more
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: https://connekthq.com 
-Version: 4.1.0
+Version: 5.0.1
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 
-define('ALM_VERSION', '4.1.0');
-define('ALM_RELEASE', 'December 6, 2018');
+define('ALM_VERSION', '5.0.1');
+define('ALM_RELEASE', 'March 13, 2019');
 define('ALM_STORE_URL', 'https://connekthq.com');
 
 
@@ -87,6 +87,19 @@ function alm_create_table(){
 		// Insert the default data in created table
 		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $defaultRepeater, 'repeaterType' => 'default', 'pluginVersion' => ALM_VERSION));
 	}
+}
+
+
+
+/*
+*  alm_render
+*  Render Ajax Load More public function
+*
+*  @param {array} $args
+*  @since 4.2.0
+*/
+function alm_render($args){
+	echo AjaxLoadMore::alm_shortcode($args);
 }
 
 
@@ -322,7 +335,7 @@ if( !class_exists('AjaxLoadMore') ):
 
    	/*
    	*  alm_enqueue_scripts
-   	*  Enqueue our scripts and create our localize variables
+   	*  Enqueue scripts and create localized variables
    	*
    	*  @since 2.0.0
    	*/
@@ -340,12 +353,12 @@ if( !class_exists('AjaxLoadMore') ):
 	   	 *
 	   	 * @return Boolean
 	   	 */
-			$dependencies = apply_filters( 'alm_js_dependencies', array('jquery') );
+			$dependencies = apply_filters( 'alm_js_dependencies', '' );
 
 
    		// Core ALM JS
          $suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min'; // Use minified libraries if SCRIPT_DEBUG is turned off
-   		wp_register_script( 'ajax-load-more', plugins_url( '/core/dist/js/ajax-load-more'. $suffix .'.js', __FILE__ ), $dependencies,  ALM_VERSION, true );
+   		wp_register_script( 'ajax-load-more', plugins_url( '/core/dist/js/ajax-load-more'.$suffix.'.js', __FILE__ ), $dependencies,  ALM_VERSION, true );
 
    		// Progress Bar JS
    		wp_register_script( 'ajax-load-more-progress', plugins_url( '/vendor/js/pace/pace.min.js', __FILE__ ), 'ajax-load-more',  ALM_VERSION, true );
@@ -353,6 +366,9 @@ if( !class_exists('AjaxLoadMore') ):
    		// Masonry JS
    		wp_register_script( 'ajax-load-more-masonry', plugins_url( '/vendor/js/masonry/masonry.pkgd.min.js', __FILE__ ), 'ajax-load-more',  '4.2.1', true );
 
+   		// Callback Helpers
+   		wp_register_script( 'ajax-load-more-legacy-callbacks', plugins_url( '/vendor/js/alm/legacy-callbacks.js', __FILE__ ), 'jquery', '', false);
+   		
 
    		// Core CSS
    		if( !alm_do_inline_css('_alm_inline_css') && !alm_css_disabled('_alm_disable_css')){ // Not inline or disabled
@@ -361,13 +377,9 @@ if( !class_exists('AjaxLoadMore') ):
    		}
 
    		// Prevent loading of unnessasry posts - move user to top of page
-   		$scrolltop = 'false';
-   		if(!isset($options['_alm_scroll_top']) || $options['_alm_scroll_top'] != '1'){ // if unset or false
-   			$scrolltop = 'false';
-   		}else{ // if checked
-      		$scrolltop = 'true';
-   		}
-
+   		// if unset or false
+   		$scrolltop = (!isset($options['_alm_scroll_top']) || $options['_alm_scroll_top'] != '1') ? 'false' : 'true';
+   		
    		wp_localize_script(
    			'ajax-load-more',
    			'alm_localize',
@@ -380,7 +392,6 @@ if( !class_exists('AjaxLoadMore') ):
    				'ajax_object' => array('is_single' => true, 'is_singular' => true )
    			)
    		);
-
    	}
 
 
@@ -392,7 +403,6 @@ if( !class_exists('AjaxLoadMore') ):
    	*  @since 2.0.0
    	*  @updated 3.2.0
    	*/
-
    	public function alm_shortcode($atts) {
 	   	self::$shortcode_atts = $atts;
       	return ALM_SHORTCODE::alm_render_shortcode($atts);
@@ -438,10 +448,8 @@ if( !class_exists('AjaxLoadMore') ):
 			// Cache
    		$cache_id = (isset($_GET['cache_id'])) ? $_GET['cache_id'] : '';
    		$cache_logged_in = (isset($_GET['cache_logged_in'])) ? $_GET['cache_logged_in'] : false;
-   		$do_create_cache = true;
-   		if($cache_logged_in === 'true' && is_user_logged_in()){
-      		$do_create_cache = false;
-   		}
+   		$do_create_cache = ($cache_logged_in === 'true' && is_user_logged_in()) ? false : true;
+
 
    		// Offset
    		$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;
@@ -503,13 +511,13 @@ if( !class_exists('AjaxLoadMore') ):
          }
 
 
-         // Previous Post Add-on
-         $previous_post = false;
-   		$pp_data = (isset($_GET['previous_post'])) ? $_GET['previous_post'] : false;
-   		if($pp_data){
-      		$previous_post = true;
-      		$previous_post_id = (isset($pp_data['id'])) ? $pp_data['id'] : '';
-      		$previous_post_slug = (isset($pp_data['slug'])) ? $pp_data['slug'] : '';
+         // Single Post Add-on
+         $single_post = false;
+   		$single_post_data = (isset($_GET['single_post'])) ? $_GET['single_post'] : false;
+   		if($single_post_data){
+      		$single_post = true;
+      		$single_post_id = (isset($single_post_data['id'])) ? $single_post_data['id'] : '';
+      		$single_post_slug = (isset($single_post_data['slug'])) ? $single_post_data['slug'] : '';
          }
 
 
@@ -528,16 +536,14 @@ if( !class_exists('AjaxLoadMore') ):
 
 
    		/*
-	   	 *	alm_prev_post_args
+	   	 *	alm_single_post_args
 	   	 *
-	   	 * Previous Post Add-on hook
-	   	 * Hijack $args and and return previous post only $args
+	   	 * Single Post Add-on hook
+	   	 * Hijack $args and and return single post only $args
 	   	 *
 	   	 * @return $args;
 	   	 */
-   		if($previous_post && has_action('alm_prev_post_installed')){
-      		$args = apply_filters('alm_prev_post_args', $previous_post_id, $postType);
-         }
+   		$args = ($single_post && has_action('alm_single_post_installed')) ? apply_filters('alm_single_post_args', $single_post_id, $postType) : $args;
 
 
 
@@ -627,7 +633,7 @@ if( !class_exists('AjaxLoadMore') ):
 	   				$alm_current++; // Current item in loop
 	   	         $alm_page = $alm_page_count; // Get page number
 	   	         $alm_item = ($alm_page_count * $posts_per_page) - $posts_per_page + $alm_loop_count; // Get current item
-
+                  
 
       			   // Call to Action [Before]
 	   				if($cta && has_action('alm_cta_inc') && $cta_pos === 'before' && in_array($alm_current, $cta_array)){
@@ -671,9 +677,9 @@ if( !class_exists('AjaxLoadMore') ):
       	   	 * @return null
       	   	 */
    	         if(!empty($cache_id) && has_action('alm_cache_installed') && $do_create_cache){
-      	         if($previous_post){
-         	         // Previous Post Cache
-   	               apply_filters('alm_previous_post_cache_file', $cache_id, $previous_post_id, $data);
+      	         if($single_post){
+         	         // Single Post Cache
+   	               apply_filters('alm_previous_post_cache_file', $cache_id, $single_post_id, $data);
       	         }else{
          	         // Standard Cache
    	               apply_filters('alm_cache_file', $cache_id, $page, $seo_start_page, $data, $preloaded);

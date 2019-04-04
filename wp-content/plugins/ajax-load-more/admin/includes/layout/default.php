@@ -1,17 +1,10 @@
-<div class="column">
-  <?php
-    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium', NULL)[0];
-    $title = get_the_title();
-    $price = get_field('price');
-    $cal = get_field('caliber');
-    $tel = '801-328-2016';
-  ?>
-  <a href="tel:<?= $tel; ?>" class="product">
-  <figure style="background-image: url('<?= $image; ?>');"></figure>
-  <div class="product-text">
-    <h6><?= $title; ?><span class="product-small"><?= $cal; ?></span></h6>
-    <p class="product-price">$<?= $price; ?></p>
-  </div>
-  <span class="product-button">Call To Reserve</span>
-  </a>
-</div>
+<li<?php if (! has_post_thumbnail() ) { echo ' class="no-img"'; } ?>>
+   <?php if ( has_post_thumbnail() ) {
+      the_post_thumbnail('alm-thumbnail');
+   }?>
+   <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+   <p class="entry-meta">
+       <?php the_time("F d, Y"); ?>
+   </p>
+   <?php the_excerpt(); ?>
+</li>

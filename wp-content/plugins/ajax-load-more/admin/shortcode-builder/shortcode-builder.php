@@ -31,9 +31,9 @@
 		   require_once('components/nextpage.php');
 		   require_once('components/paging.php');
 		   require_once('components/preloaded.php');
-		   require_once('components/previous-post.php');
 		   require_once('components/rest-api.php');
 		   require_once('components/seo.php');
+		   require_once('components/single-post.php');
 		   require_once('components/users.php');
 		?>
    </div>
@@ -54,8 +54,8 @@
 	         <!-- ID -->
 	         <div class="section-title">
 	            <h4><?php _e('ID', 'ajax-load-more'); ?> <a href="javascript:void(0)" class="fa fa-question-circle tooltip" title="<?php _e('Adding a unique ID will allow you target this specific Ajax Load More instance with the alm_query_args_id() filter','ajax-load-more'); ?>."></a></h4>
-	   		 	<p><?php _e('Set a unique ID for this Ajax Load More instance.', 'ajax-load-more'); ?><br/>
-	   		 	&raquo; <a href="https://connekthq.com/plugins/ajax-load-more/docs/filter-hooks/#alm_query_args" target="_blank">Learn More</a></p>
+	   		 	<p><?php _e('Set a unique ID for this Ajax Load More instance.', 'ajax-load-more'); ?></p>
+	   		 	<p><a class="button-small" href="https://connekthq.com/plugins/ajax-load-more/docs/filter-hooks/#alm_query_args" target="_blank"><?php _e('Learn More', 'ajax-load-more'); ?></a></p>
 	   		 </div>
 	         <div class="wrap">
 	            <div class="inner">
@@ -245,11 +245,11 @@
 	            <hr>
 	            <div class="section-title">
 	               <h4><?php _e('Scroll Distance', 'ajax-load-more'); ?> <a href="javascript:void(0)" class="fa fa-question-circle tooltip" title="<?php _e('Distance is based on the position of the loading button from the bottom of the screen','ajax-load-more'); ?>."></a></h4>
-	      		 	<p><?php _e('The distance from the bottom of the screen to trigger loading of posts. (Default = 150)', 'ajax-load-more'); ?></p>
+	      		 	<p><?php _e('The distance from the bottom of the screen to trigger loading of posts. (Default = 100)', 'ajax-load-more'); ?></p>
 	      		 </div>
 	            <div class="wrap">
 	               <div class="inner">
-	                  <input type="number" class="alm_element numbers-only" name="scroll-distance" id="scroll-distance" step="10" min="0" value="150">
+	                  <input type="number" class="alm_element numbers-only" name="scroll-distance" id="scroll-distance" step="10" min="0" value="100">
 	               </div>
 	            </div>
 	         </div>
@@ -441,7 +441,7 @@
 			         <hr>
 		
 			         <div class="section-title">
-			            <h4><?php _e('Transition Container Classes', 'ajax-load-more'); ?> <a href="javascript:void(0)" class="fa fa-question-circle tooltip" title="<?php _e('This setting is not available with the Previous Post or Next Page add-ons','ajax-load-more'); ?>."></a></h4>
+			            <h4><?php _e('Transition Container Classes', 'ajax-load-more'); ?> <a href="javascript:void(0)" class="fa fa-question-circle tooltip" title="<?php _e('This setting is not available with the Single Post or Next Page add-ons','ajax-load-more'); ?>."></a></h4>
 			   		 	<p><?php _e('Add custom classes to the <span>.alm-reveal</span> loading container', 'ajax-load-more'); ?>.</p>
 			   		 </div>
 			         <div class="wrap">
@@ -506,10 +506,8 @@
 	      <h3 class="heading" tabindex="0"><?php _e('Progress Bar', 'ajax-load-more'); ?></h3>
 	      <div class="expand-wrap">
 	         <div class="section-title">
-	   		 	<p><?php _e('Display progress bar indicator at the top of the window while loading Ajax content', 'ajax-load-more'); ?>.<br/>
-	   		 	&raquo; <a href="https://connekthq.com/plugins/ajax-load-more/examples/progress-bar/" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a>
-	
-	   		 	</p>
+	   		 	<p><?php _e('Display progress bar indicator at the top of the window while loading Ajax content.', 'ajax-load-more'); ?></p>
+	   		 	<p><a class="button-small" href="https://connekthq.com/plugins/ajax-load-more/examples/progress-bar/" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a></p>
 	   		</div>
 	         <div class="wrap">
 		         <div class="inner">
@@ -726,9 +724,8 @@
 	         <div class="section-title">
 	            <h4><?php _e('Include', 'ajax-load-more'); ?> <a href="javascript:void(0)" class="fa fa-question-circle tooltip" title="<?php _e('Get posts by category using a category_name or category__and query','ajax-load-more'); ?>."></a></h4>
 	            <p><?php _e('Comma separated list of categories to include by', 'ajax-load-more'); ?> <strong class="alm-populate"><?php _e('slug', 'ajax-load-more'); ?></strong>.
-	            <small class="alm-populate-eg">e.g. design, research etc...</small>
-	            <br/>
-	            &raquo; <a href="admin.php?page=ajax-load-more-help&section=examples#example-category" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a></p>
+	            <small class="alm-populate-eg">e.g. design, research etc...</small></p>
+	            <p><a class="button-small" href="admin.php?page=ajax-load-more-help&section=examples#example-category" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a></p>
 	         </div>
 	         <div class="wrap">
 	            <div class="inner">
@@ -816,8 +813,8 @@
 	   		<div class="section-title">
 	   			<h4><?php _e('Include', 'ajax-load-more'); ?> <a href="javascript:void(0)" class="fa fa-question-circle tooltip" title="<?php _e('Get posts by tags using a tag or tag__and query','ajax-load-more'); ?>."></a></h4>
 					<p><?php _e('Comma separated list of tags to include by', 'ajax-load-more'); ?> <strong class="alm-populate"><?php _e('slug', 'ajax-load-more'); ?></strong>.
-					<small class="alm-populate-eg">e.g. toronto, canada etc...</small>
-					<br/>&raquo; <a href="admin.php?page=ajax-load-more-help&section=examples#example-tag" target="_blank">
+					<small class="alm-populate-eg">e.g. toronto, canada etc...</small></p>
+					<p><a class="button-small" href="admin.php?page=ajax-load-more-help&section=examples#example-tag" target="_blank">
 						<?php _e('View Example', 'ajax-load-more'); ?>
 						</a></p>
 	   		</div>
@@ -960,7 +957,8 @@
 	      <h3 class="heading" tabindex="0"><?php _e('Date', 'ajax-load-more'); ?></h3>
 	      <div class="expand-wrap">
 	         <div class="section-title">
-	   		 	<p><?php _e('Enter a year, month(number) and day to query by date archive.<br/>&raquo; <a href="admin.php?page=ajax-load-more-help&section=examples#example-date" target="_blank">View Example</a>', 'ajax-load-more'); ?></p>
+	   		 	<p><?php _e('Enter a year, month(number) and day to query by date archive.', 'ajax-load-more'); ?></p>
+	   		 	<p><a class="button-small" href="admin.php?page=ajax-load-more-help&section=examples#example-date" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a></p>
 	   		 </div>
 	         <div class="wrap">
 	            <div class="inner">
@@ -994,7 +992,10 @@
 			echo '<h3 class="heading" tabindex="0">' . __('Author', 'ajax-load-more') . '</h3>';
 			echo '<div class="expand-wrap">';
 			echo '<div class="section-title">';
-			echo '<p>' . __('Select an Author to query(by ID).', 'ajax-load-more') . '<br/>&raquo; <a href="admin.php?page=ajax-load-more-help&section=examples#example-author" target="_blank">View Example</a></p>';
+			echo '<p>' . __('Select an Author to query(by ID).', 'ajax-load-more') . '</p>';
+			?>
+			<p><a class="button-small" href="admin.php?page=ajax-load-more-help&section=examples#example-author" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a></p>
+			<?php
 			echo '</div>';
 			echo '<div class="wrap"><div class="inner">';
 			if(!$disable_dynamic_content){
@@ -1046,7 +1047,8 @@
 	         <hr/>
 	         <div class="section-title">
 	            <h4><?php _e('Exclude', 'ajax-load-more'); ?></h4>
-	   		 	<p><?php _e('A comma separated list of post ID\'s to exclude from query.', 'ajax-load-more'); ?><br/>&raquo; <a href="admin.php?page=ajax-load-more-help&section=examples#example-exclude" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a></p>
+	   		 	<p><?php _e('A comma separated list of post ID\'s to exclude from query.', 'ajax-load-more'); ?></p>
+	   		 	<P><a class="button-small" href="admin.php?page=ajax-load-more-help&section=examples#example-exclude" target="_blank"><?php _e('View Example', 'ajax-load-more'); ?></a></p>
 	   		 </div>
 	         <div class="wrap">
 	            <div class="inner">
