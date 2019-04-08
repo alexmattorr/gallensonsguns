@@ -6,7 +6,7 @@
           offset = header.offset().top,
           fixed = 'header-fixed';
 
-      $(window).scroll(function(){
+      $(window).scroll(function() {
         var scroll = $(window).scrollTop();
       
         if (scroll >= offset) {
@@ -19,8 +19,25 @@
       });
     },
 
+    sidebar : function() {
+      var sidebar = $('.sidebar'),
+          offset = sidebar.offset().top,
+          fixed = 'sidebar-fixed';
+      
+      $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if(scroll >= offset) {
+          sidebar.addClass(fixed);
+        } else {
+          sidebar.removeClass(fixed);
+        }
+      });
+    },
+
     init : function(){
       fixed.header();
+      // fixed.sidebar();
     }
   };
 

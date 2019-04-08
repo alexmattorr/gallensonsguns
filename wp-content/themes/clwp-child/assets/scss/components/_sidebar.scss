@@ -48,4 +48,14 @@
       }
     }
   }
+
+  &.sidebar-fixed .column {
+    position: fixed;
+    top: 80px;
+
+    @include breakpoint(medium down) {
+      position: relative;
+      top: auto;
+    }
+  }
 }
