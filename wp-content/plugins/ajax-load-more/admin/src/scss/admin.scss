@@ -131,11 +131,13 @@ body.ajax-load-more_page_ajax-load-more-pro{
 #alm-help.ajax-load-more{
 	max-width: 1600px;
 }
+/*
 .ajax-load-more a:focus{
    -webkit-box-shadow: none;
    -moz-box-shadow: none;
    box-shadow: none;
 }
+*/
 .ajax-load-more img{
    max-width: 100%;
 }
@@ -171,8 +173,7 @@ body.ajax-load-more_page_ajax-load-more-pro{
       border-bottom: none;
       padding: 20px 20px 6px;
       margin: 20px 0 0;
-      font-weight: 600;
-      font-size: 18px;
+      font-weight: 700;
       border-radius: 2px 2px 0 0;
       &:first-of-type{
          margin: 0;
@@ -317,7 +318,7 @@ a.layout-hover{
 
 /* Expand Collapse Headings */
 .ajax-load-more h3.heading{
-   font-weight: 600;
+   font-weight: 700;
    padding: 15px 10px 15px 38px !important;
    line-height: normal !important;
    margin: 0 !important;
@@ -663,25 +664,24 @@ a.button-small{
       	background-color: #fff;
    	}
 	}
+	strong{
+	   display: inline-block;
+	   font-weight: normal;
+	   font-family: Consolas, monaco, monospace; 
+	   background-color: #fff;
+	   padding: 1px 6px 0;
+	   border-radius: 2px;
+	}
 }
-   .ajax-load-more p.warning-callout strong{
-      display: inline-block;
-      font-weight: normal;
-      font-family: Consolas, monaco, monospace; 
-      background-color: #fff;
-      padding: 0 6px;
-      border-radius: 2px;
-   }
 .ajax-load-more p.warning-callout.notify{
-	background-color: #ad4141;
-	border-color: #903030;
+	background-color: #da5858;
+	border-color: #b94848;
 	color: #fff;
-}
-
-	.ajax-load-more p.warning-callout.notify strong{
-		background-color: #cb5858;
+	strong{
+		background-color: #9a4343;
 		color: #fff;
 	}
+}
 
 
 .ajax-load-more label,
@@ -1436,7 +1436,7 @@ hr.indented{ // Indented as fake padding in shortcode builder
 .ajax-load-more h2.addon-title{
    font-size: 19px !important;
    line-height: 24px;
-   font-weight: 600 !important;
+   font-weight: 700 !important;
    color: #444 !important;
    padding: 0;
    margin: 0 0 10px;
@@ -2154,6 +2154,7 @@ table.highlight{
    	margin: 0;
    	display: block;
    	font-size: 15px;
+   	font-weight: 700;
    	text-transform: none;
    	border-radius: 2px 2px 0 0;
 	} 
@@ -2800,7 +2801,7 @@ p.theme-title{
 .alm-dir-listing.theme-repeaters ul li{
    display: block;
    width: 100%;
-   padding-top: 12px;
+   padding-top: 10px;
 }
 .alm-dir-listing.theme-repeaters ul li label{
    display: block;
@@ -2938,7 +2939,7 @@ p.theme-title{
       background-color: #f7f7f7;
       border-radius: 2px 2px 0 0; 
       color: $grey;
-      font-weight: 600;
+      font-weight: 700;
       position: relative;  
       cursor: pointer;
       &:focus,
@@ -3536,6 +3537,8 @@ p.theme-title{
 .alm-notification{
 	background: #6199c3 !important;
 	border-color: #3f7d9a !important;
+	padding: 20px;
+	margin: 0 0 20px;
 	&:hover{
    	a.dismiss{
       	opacity: 0.7;
@@ -3549,8 +3552,6 @@ p.theme-title{
       padding: 0 0 15px;
    }
    h2{
-	   padding-right: 50px;
-	   padding-left: 32px;
 	   line-height: 1.25;
 	   position: relative;
 	   color: #fff;

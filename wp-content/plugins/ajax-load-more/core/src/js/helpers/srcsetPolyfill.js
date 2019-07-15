@@ -1,5 +1,5 @@
 /**
- * reloadSrcsetImgs
+ * srcsetPolyfill
  * A Safari srcset polyfill to get Masonry and ImagesLoaded working
  *
  * @param {*} container Element

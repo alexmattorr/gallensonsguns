@@ -118,7 +118,8 @@ let almMasonry = (alm, init, filtering) => {
    			// Append elements listing
    			almAppendChildren(alm.listing, data, 'masonry');
    			
-   			srcsetPolyfill(container, alm.ua); // Run srcSet polyfill
+   			// Run srcSet polyfill
+   			srcsetPolyfill(container, alm.ua);
    			
    			// Confirm imagesLoaded & append
    			imagesLoaded( container, function() {

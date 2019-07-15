@@ -6,6 +6,11 @@
  * @package Health Check
  */
 
+// Make sure the file is not directly accessible.
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'We\'re sorry, but you can not directly access this file.' );
+}
+
 /**
  * Class Files_Integrity
  */
@@ -28,18 +33,18 @@ class Health_Check_Files_Integrity {
 	}
 
 	/**
-	 * Calls the WordPress API on the checksums endpoint
-	 *
-	 * @uses get_bloginfo()
-	 * @uses get_locale()
-	 * @uses ABSPATH
-	 * @uses wp_remote_get()
-	 * @uses get_bloginfo()
-	 * @uses strpos()
-	 * @uses unset()
-	 *
-	 * @return array
-	 */
+	* Calls the WordPress API on the checksums endpoint
+	*
+	* @uses get_bloginfo()
+	* @uses get_locale()
+	* @uses ABSPATH
+	* @uses wp_remote_get()
+	* @uses get_bloginfo()
+	* @uses strpos()
+	* @uses unset()
+	*
+	* @return array
+	*/
 	static function call_checksum_api() {
 		// Setup variables.
 		$wpversion = get_bloginfo( 'version' );
@@ -64,16 +69,16 @@ class Health_Check_Files_Integrity {
 	}
 
 	/**
-	 * Parses the results from the WordPress API call
-	 *
-	 * @uses file_exists()
-	 * @uses md5_file()
-	 * @uses ABSPATH
-	 *
-	 * @param array $checksums
-	 *
-	 * @return array
-	 */
+	* Parses the results from the WordPress API call
+	*
+	* @uses file_exists()
+	* @uses md5_file()
+	* @uses ABSPATH
+	*
+	* @param array $checksums
+	*
+	* @return array
+	*/
 	static function parse_checksum_results( $checksums ) {
 		$filepath = ABSPATH;
 		$files    = array();
@@ -92,16 +97,16 @@ class Health_Check_Files_Integrity {
 	}
 
 	/**
-	 * Generates the response
-	 *
-	 * @uses wp_send_json_success()
-	 * @uses wp_die()
-	 * @uses ABSPATH
-	 *
-	 * @param null|array $files
-	 *
-	 * @return void
-	 */
+	* Generates the response
+	*
+	* @uses wp_send_json_success()
+	* @uses wp_die()
+	* @uses ABSPATH
+	*
+	* @param null|array $files
+	*
+	* @return void
+	*/
 	static function create_the_response( $files ) {
 		$filepath = ABSPATH;
 		$output   = '';
@@ -129,7 +134,7 @@ class Health_Check_Files_Integrity {
 			$output .= '</td></tr></tfoot><tbody>';
 			foreach ( $files as $tampered ) {
 				$output .= '<tr>';
-				$output .= '<td><span class="error"></span></td>';
+				$output .= '<td><span class="error"><span class="screen-reader-text">' . esc_html__( 'Error', 'health-check' ) . '</span></span></td>';
 				$output .= '<td>' . $filepath . $tampered[0] . '</td>';
 				$output .= '<td>' . $tampered[1] . '</td>';
 				$output .= '</tr>';
@@ -148,24 +153,24 @@ class Health_Check_Files_Integrity {
 	}
 
 	/**
-	 * Generates Diff view
-	 *
-	 * @uses get_bloginfo()
-	 * @uses wp_remote_get()
-	 * @uses wp_remote_retrieve_body()
-	 * @uses wp_send_json_success()
-	 * @uses wp_die()
-	 * @uses ABSPATH
-	 * @uses FILE_USE_INCLUDE_PATH
-	 * @uses wp_text_diff()
-	 *
-	 *
-	 * @return void
-	 */
+	* Generates Diff view
+	*
+	* @uses get_bloginfo()
+	* @uses wp_remote_get()
+	* @uses wp_remote_retrieve_body()
+	* @uses wp_send_json_success()
+	* @uses wp_die()
+	* @uses ABSPATH
+	* @uses FILE_USE_INCLUDE_PATH
+	* @uses wp_text_diff()
+	*
+	*
+	* @return void
+	*/
 	static function view_file_diff() {
 		check_ajax_referer( 'health-check-view-file-diff' );
 
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'install_plugins' ) ) {
 			wp_send_json_error();
 		}
 
@@ -174,7 +179,7 @@ class Health_Check_Files_Integrity {
 		$wpversion = get_bloginfo( 'version' );
 
 		if ( 0 !== validate_file( $filepath . $file ) ) {
-			wp_send_json_error( array( 'message' => esc_html__( 'You do not have access to this file.' , 'health-check' ) ) );
+			wp_send_json_error( array( 'message' => esc_html__( 'You do not have access to this file.', 'health-check' ) ) );
 		}
 
 		$allowed_files = get_transient( 'health-check-checksums' );
@@ -185,7 +190,7 @@ class Health_Check_Files_Integrity {
 		}
 
 		if ( ! isset( $allowed_files['checksums'][ $file ] ) ) {
-			wp_send_json_error( array( 'message' => esc_html__( 'You do not have access to this file.' , 'health-check' ) ) );
+			wp_send_json_error( array( 'message' => esc_html__( 'You do not have access to this file.', 'health-check' ) ) );
 		}
 
 		$local_file_body  = file_get_contents( $filepath . $file, FILE_USE_INCLUDE_PATH );
@@ -221,20 +226,20 @@ class Health_Check_Files_Integrity {
 		ob_start();
 		?>
 
-        <div>
-            <p>
+		<div>
+			<p>
 				<?php _e( 'The File Integrity checks all the core files with the <code>checksums</code> provided by the WordPress API to see if they are intact. If there are changes you will be able to make a Diff between the files hosted on WordPress.org and your installation to see what has been changed.', 'health-check' ); ?>
-            </p>
-            <form action="#" id="health-check-file-integrity" method="POST">
-                <p>
-                    <input type="submit" class="button button-primary" value="<?php esc_html_e( 'Check the Files Integrity', 'health-check' ); ?>">
-                </p>
-            </form>
+			</p>
+			<form action="#" id="health-check-file-integrity" method="POST">
+				<p>
+					<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Check the Files Integrity', 'health-check' ); ?>">
+				</p>
+			</form>
 
-            <div id="tools-file-integrity-response-holder">
-                <span class="spinner"></span>
-            </div>
-        </div>
+			<div id="tools-file-integrity-response-holder">
+				<span class="spinner"></span>
+			</div>
+		</div>
 
 		<?php
 		$tab_content = ob_get_clean();

@@ -3,8 +3,8 @@
    if(!isset($alm_share_notification) || empty($alm_share_notification)){
       // If transient has not been set - display this notice.
    ?>
-	<div class="group alm-notification alm-notification--blue">
-   	<h2><span>👋</span>Thank you for installing Ajax Load More!</h2>
+	<div class="alm-notification alm-notification--blue">
+   	<h2>Thanks for installing Ajax Load More!</h2>
    	<p class="opening">I hope you're finding the plugin easy to use and a nice feature addition to your website.</p>
    	<p>If so, would you consider helping <a href="https://twitter.com/KaptonKaos" target="_blank">me</a> widen the reach of Ajax Load More by sharing with your networks and/or leaving a review.</p>
 		<ul class="share">

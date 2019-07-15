@@ -6,6 +6,11 @@
  * @package Health Check
  */
 
+// Make sure the file is not directly accessible.
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'We\'re sorry, but you can not directly access this file.' );
+}
+
 /**
  * Class Mail Check
  */
@@ -24,7 +29,7 @@ class Health_Check_Mail_Check {
 	static function run_mail_check() {
 		check_ajax_referer( 'health-check-mail-check' );
 
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'install_plugins' ) ) {
 			wp_send_json_error();
 		}
 
@@ -34,8 +39,8 @@ class Health_Check_Mail_Check {
 		$email_message = sanitize_text_field( $_POST['email_message'] );
 		$wp_address    = get_bloginfo( 'url' );
 		$wp_name       = get_bloginfo( 'name' );
-		$date          = date( 'F j, Y' );
-		$time          = date( 'g:i a' );
+		$date          = date_i18n( get_option( 'date_format' ), current_time( 'timestamp' ) );
+		$time          = date_i18n( get_option( 'time_format' ), current_time( 'timestamp' ) );
 
 		// translators: %s: website url.
 		$email_subject = sprintf( esc_html__( 'Health Check – Test Message from %s', 'health-check' ), $wp_address );
@@ -85,7 +90,7 @@ class Health_Check_Mail_Check {
 	 *
 	 * @param array $tabs
 	 *
-	 * return array
+	 * @return array
 	 */
 	public static function tools_tab( $tabs ) {
 		ob_start();

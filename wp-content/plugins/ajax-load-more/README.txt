@@ -3,8 +3,8 @@ Contributors: dcooney, connekthq
 Donate link: https://connekthq.com/donate/
 Tags: infinite scroll, infinite scrolling, scroll, infinite, lazy load, lazy loading, endless scroll, pagination, ajax pagination, ajax, ajax posts, woocommerce, ajax load more, masonry
 Requires at least: 4.0
-Tested up to: 5.1.1
-Stable tag: 5.0.2
+Tested up to: 5.2.2
+Stable tag: 5.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,7 @@ Check out the **[demo site](https://connekthq.com/plugins/ajax-load-more/)** for
 
 
 
-#### What's New 4.0
+#### What's New
 * **[Pro](https://connekthq.com/plugins/ajax-load-more/pro/)** - Access to all premium add-ons in a single installation.
 * **[Filters](https://connekthq.com/plugins/ajax-load-more/add-ons/filters/)** - The Filters add-on provides front-end and admin functionality for building and managing Ajax filters.
 * **[User Query](https://connekthq.com/plugins/ajax-load-more/add-ons/users/)** - Query and display a list of WordPress users by role using a `WP_User_Query` and Ajax Load More.
@@ -328,7 +328,7 @@ global $post;
 * Safari (Mac, iOS)
 * Opera
 * Android
-* IE10+
+* IE11+
 
 
 = How Can You Contribute? =
@@ -377,9 +377,54 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 5.1.2 - June 24, 2019 =
+* NEW - Added direct WooCommerce integration using the `woocommerce` shortcode parameter. Blog post and docs coming soon how to use this new parameter with archive and product listing pages.
+* FIX - Fixed issue with element scroll and auto-focus in iOS and Android devices.
+* UPDATE - Removing REST API code introduced in 5.1 that caused issues for some users. Please make sure you clear your site cache and any combined JavaScript.
+
+
+= 5.1.1 - May 29, 2019 =
+* NEW - Added new `ALM_DISABLE_REPEATER_TEMPLATES` PHP constant that prevents ALM from creating the default Repeater Template or storing template data in your database. To use this feature, add the following to your `wp-config.php` in the root of your site: `define('ALM_DISABLE_REPEATER_TEMPLATES', true);`.
+* UPDATE - Removed REST API settings from admin/admin.php and ajax-load-more.php.
+* UPDATE - Better error reporting for failed Ajax requests.
+* UPDATE - Updated the scroll trigger from the Load More `<button class="button"/>` to the button wrap `<div class="alm-btn-wrap/>`. This is because many users were setting `display: none;` on the button directly and that caused loading issues.
+* FIX - FIxed issue with ALM not maintaining past page scroll position when a user hits the browser back button.
+* FIX - Security fix for $querystring URLs in Preloaded content.
+* FIX - Fixed issue with nested `.alm-preloaded` div elements with Filters and Preloaded addon.
+* FIX - Fixed issue with alm_render function throwing non static function warning message.
+* FIX - Fixed JS console warning message abut duplicate `babel/polyfill scripts` for users running other versions of Babel. 
+* FIX - Fixed `srcSet` issue with paged results in Filters and SEO addon when using Safari browser.
+
+
+= 5.1.0.1 - May 7, 2019 =
+* UPDATE - After the 5.1.0 launch I discovered an issue with the REST API and WooCommerce. I have reverted the default REST API Usage until I can sort this out. 😢
+
+
+= 5.1.0 - May 7, 2019 =
+MAJOR UPDATE NOTICE
+Ajax Load More can now use the WordPress REST API as the default for Ajax requests - this includes all add-ons and extensions. 
+Users that wish to continue using `admin-ajax.php` for Ajax requests can disable the REST API from  `Ajax Load More > Settings > Global Settings` in your WordPress admin. 
+
+For backwards compatibility, all users running WordPress version 4.7 or lower will default to using `admin-ajax.php`.
+
+Please update all your add-ons and extensions when you update Ajax Load More as this release contains breaking changes.
+
+What's New in 5.1.0
+* NEW - ALM now uses the REST API for all Ajax queries 👏. This includes all add-ons and extensions.
+* NEW - Added new Results Text display for displaying the current page number to users. [view example](https://connekthq.com/plugins/ajax-load-more/examples/results-text/)
+* NEW - Added custom JavaScript fix for reply links in Comment query causing page refresh.
+* NEW - Added custom WP_Query parameter, `alm_query` that can be used in hooks/filters to modify the current query.
+* UPDATE - Added `aria` attributes and focus position after Ajax load to improve plugin accessibility.
+* FIX - Fixed issue with images not displaying in Safari when `transition_container="false"` is set.
+* FIX - Fixed issue where Load More button was not hiding after `destory_after` value was reached.
+* FIX - Fixed issue with `meta_value` shortcode parameter. Passing zero as a value was returning false and not the number.
+* FIX - Fixed IE11 issue where filtering was not working with camelCase data attributes. 
+
+
+
 = 5.0.2 - April 4, 2019 =
-* NEW - `alm_shortcode_defaults` filter (docs coming soon).
-* NEW - `Added alm_settings` filter (docs coming soon).
+* NEW - `alm_shortcode_defaults` filter.
+* NEW - `Added `alm_settings` filter.
 * FIX - Added custom Safari polyfill for srcset img height issue with Masonry and ImagesLoaded.
 * FIX - Fixed issue with encoding URLs in HTTP Ajax request.
 * FIX - Fix for undefined labels in Shortcode Builder.

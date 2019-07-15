@@ -202,7 +202,8 @@ if( !class_exists('ALM_SHORTCODE') ):
    			'container_type' => '',
    			'css_classes' => '',
    			'id' => '',
-   			'primary' => false
+   			'primary' => false,
+   			'woocommerce' => false,
    		), $atts));   		
    			
    		
@@ -408,8 +409,8 @@ if( !class_exists('ALM_SHORTCODE') ):
 
    		// Start ALM object
    		$ajaxloadmore = '';
-
-
+			
+			
 
 			/*
 	   	 *	alm_before_container
@@ -425,7 +426,13 @@ if( !class_exists('ALM_SHORTCODE') ):
 
 			// Generate ALM ID
          $div_id = (self::$counter > 1) ? 'ajax-load-more-'.self::$counter : 'ajax-load-more';
-
+         
+         // Localized ID - ID used for storin glocalized variables
+   		$localize_id = (empty($id)) ? $div_id : 'ajax-load-more-'.$id;
+   		
+   		// Master ID - Manual or generated ALM ID
+   		$master_id = (empty($id)) ? $div_id : $id;
+   		
 			// Custom unique ALM ID (shortcode)
          $unique_id = (!empty($id)) ? 'data-id="'.$id.'"' : '';
 
@@ -437,11 +444,25 @@ if( !class_exists('ALM_SHORTCODE') ):
 
 
 			// Start .alm-listing
-   		$ajaxloadmore .= '<div id="'. $div_id .'" class="ajax-load-more-wrap'. $btn_color .''. $paging_color .''. $alm_layouts .'" '. $unique_id .' data-alm-id="" data-canonical-url="'. $canonicalURL .'" data-slug="'. $slug .'" data-post-id="'. $post_id .'" '. $is_search . $is_nested .'>';
+   		$ajaxloadmore .= '<div id="'. $div_id .'" class="ajax-load-more-wrap'. $btn_color .''. $paging_color .''. $alm_layouts .'" '. $unique_id .' data-alm-id="" data-canonical-url="'. $canonicalURL .'" data-slug="'. $slug .'" data-post-id="'. $post_id .'" '. $is_search . $is_nested .' data-localized="'. alm_convert_dashes_to_underscore($localize_id) .'_vars' .'">';
 
 
 				//	Masonry Hook (Before)
 				$ajaxloadmore .= apply_filters('alm_masonry_before', $transition);
+				
+				
+				// WooCommerce
+				// - Set required WooCommerce config options
+				if($woocommerce === 'true'){
+					$css_classes = $css_classes .' products';
+					$post_type = 'product';
+					if(is_archive()){
+						$obj = get_queried_object();
+						$taxonomy = $obj->taxonomy;
+						$taxonomy_terms = $obj->slug;
+						$taxonomy_operator = 'IN';
+					}
+				}
 
 
 	   		// Single Post Add-on
@@ -506,6 +527,7 @@ if( !class_exists('ALM_SHORTCODE') ):
             	'acf_post_id'   		=> $acf_post_id,
             	'acf_field_type'  	=> $acf_field_type,
             	'acf_field_name'     => $acf_field_name,
+            	'nextpage' 				=> $nextpage,
             	'users' 					=> $users,
             	'users_role' 			=> $users_role,
             	'users_include' 		=> $users_include,
@@ -566,7 +588,8 @@ if( !class_exists('ALM_SHORTCODE') ):
             
             // Open #ajax-load-more
             
-	   		$ajaxloadmore .= '<'.$container_element.' class="'.$listing_class.' alm-ajax'. $paging_container_class . $classname . $css_classes .'"'.$paging_transition.'';
+	   		$ajaxloadmore .= '<'.$container_element.' aria-live="polite"';   	   		
+					$ajaxloadmore .= ' class="'.$listing_class.' alm-ajax'. $paging_container_class . $classname . $css_classes .'"'.$paging_transition.'';
 
 					// Build container data atts
 
@@ -791,7 +814,7 @@ if( !class_exists('ALM_SHORTCODE') ):
    	   		
    	   		// Meta Query
    	   		$ajaxloadmore .= (!empty($meta_key)) ? ' data-meta-key="'.$meta_key.'"' : '';
-   	   		$ajaxloadmore .= (!empty($meta_value)) ? ' data-meta-value="'.$meta_value.'"' : '';
+   	   		$ajaxloadmore .= (!empty($meta_value) || $meta_value === '0') ? ' data-meta-value="'.$meta_value.'"' : '';
    	   		$ajaxloadmore .= (!empty($meta_compare)) ? ' data-meta-compare="'.$meta_compare.'"' : '';
    	   		$ajaxloadmore .= (!empty($meta_relation)) ? ' data-meta-relation="'.$meta_relation.'"' : '';
    	   		$ajaxloadmore .= (!empty($meta_type)) ? ' data-meta-type="'.$meta_type.'"' : '';
@@ -925,6 +948,7 @@ if( !class_exists('ALM_SHORTCODE') ):
 	            $nextpage_is_paged = ($nextpage_start > 1) ? true : false;
 
 	            $alm_nextpage_output = apply_filters('alm_init_nextpage', $nextpage_post_id, $nextpage_start,$nextpage_is_paged, $paging, $div_id, $id);
+	            	            
 	            $ajaxloadmore .= $alm_nextpage_output;
 
 	         }
@@ -969,6 +993,12 @@ if( !class_exists('ALM_SHORTCODE') ):
             $ajaxloadmore .= (!empty($noscript_pagingnav)) ? $noscript_pagingnav : '';
             
             
+            // Render <noscript> pagination for Nextpage addon		
+            if(has_action('alm_nextpage_installed') && $nextpage){   
+		      	$ajaxloadmore .= apply_filters( 'alm_nextpage_noscript_paging', $query_args['post_id'], $query_args['id'] ); // located in Nextpage add-on
+		      }
+            
+            
 			// Close #ajax-load-more
    		$ajaxloadmore .= '</div>';
 
@@ -1000,8 +1030,9 @@ if( !class_exists('ALM_SHORTCODE') ):
    		// End REST API Add-on
    		
    		
-   		// Add some localized vars
-   		ALM_LOCALIZE::add_localized_var('id', $div_id, $div_id);
+   		
+   		// Add localized vars
+   		ALM_LOCALIZE::add_localized_var('id', $master_id, $localize_id);
          
          
          
@@ -1012,7 +1043,7 @@ if( !class_exists('ALM_SHORTCODE') ):
 	   	 *
 	   	 * @return <script>
 	   	 */
-	      ALM_LOCALIZE::create_script_vars($div_id);
+	      ALM_LOCALIZE::create_script_vars($localize_id);
 	      
 	         		
          
