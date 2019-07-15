@@ -37,7 +37,6 @@
 
          <div class="clear"></div>
          <hr/>
-         <div class="spacer"></div>
 
 		   <div class="section-title">
 				<h4><?php _e('Field Type', 'ajax-load-more'); ?></h4>
@@ -58,7 +57,6 @@
 
          <div class="clear"></div>
          <hr/>
-         <div class="spacer"></div>
 
 		   <div class="section-title">
 				<h4><?php _e('Field Name', 'ajax-load-more'); ?></h4>

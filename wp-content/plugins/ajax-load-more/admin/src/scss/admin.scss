@@ -131,11 +131,13 @@ body.ajax-load-more_page_ajax-load-more-pro{
 #alm-help.ajax-load-more{
 	max-width: 1600px;
 }
+/*
 .ajax-load-more a:focus{
    -webkit-box-shadow: none;
    -moz-box-shadow: none;
    box-shadow: none;
 }
+*/
 .ajax-load-more img{
    max-width: 100%;
 }
@@ -171,8 +173,7 @@ body.ajax-load-more_page_ajax-load-more-pro{
       border-bottom: none;
       padding: 20px 20px 6px;
       margin: 20px 0 0;
-      font-weight: 600;
-      font-size: 18px;
+      font-weight: 700;
       border-radius: 2px 2px 0 0;
       &:first-of-type{
          margin: 0;
@@ -295,10 +296,21 @@ a.layout-hover{
 	margin-top: -10px;
 	opacity: 0.7;
 }
+.ajax-load-more.shortcode-builder .major-publishing-actions{
+   position: relative;
+}
 .ajax-load-more p.small.reset-shortcode-builder{
+   position: absolute;
+   right: 15px;
+   top: 50%;
+   transform: translateY(-45%);
    text-align: right;
-   margin: 10px 0 0;
+   margin: 0;
+   padding: 0;
    display: none;
+   width: auto;
+   opacity: 1;
+   font-size: 12px;
 }
    .ajax-load-more p.small.reset-shortcode-builder a{
       text-decoration: none;
@@ -306,7 +318,7 @@ a.layout-hover{
 
 /* Expand Collapse Headings */
 .ajax-load-more h3.heading{
-   font-weight: 600;
+   font-weight: 700;
    padding: 15px 10px 15px 38px !important;
    line-height: normal !important;
    margin: 0 !important;
@@ -420,6 +432,21 @@ a.layout-hover{
    font-family: -apple-system,BlinkMacSystemFont, "Segoe UI", Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }   
 
+a.button-small{
+	text-decoration: none;
+	font-size: 11px;
+	padding: 7px;
+	display: inline-block;
+	background-color: #eaf6fb;
+	color: #333;
+	line-height: 1.1;
+	border-radius: 2px;
+	&:hover,
+	&:focus{
+		color: #222;
+		background-color: #d9edf5;
+	}
+}
 
 .ajax-load-more ul{
    padding: 0;
@@ -435,6 +462,7 @@ a.layout-hover{
       display: inline-block;
       vertical-align: top;
       overflow: visible;
+      position: relative;
    }
 
 .ajax-load-more label.full{
@@ -608,37 +636,52 @@ a.layout-hover{
 }
 
 .ajax-load-more p.warning-callout{
-	background-color: #cbecf7;
-	border-left: 5px solid #5e99ac;
+	background-color: #eaf6fb;
+	border-left: 6px solid #4e99bf;
 	color: #333;
-	font-size: 13px;
+	font-size: 12px;
 	margin: 0;
 	display: block;
-	padding: 12px 12px 12px 17px;
+	padding: 18px 100px 18px 18px;
 	border-radius: 3px;
 	margin: 10px;
 	width: auto;
 	line-height: 1.55;
+	position: relative;
+	a{
+   	color: #0071ac;
+	}
+	a.button-small{
+   	position: absolute;
+   	right: 14px;
+   	top: 14px;
+	   font-size: 12px;
+   	display: inline-block;
+   	background-color: rgba(255, 255, 255, 0.65); 
+   	margin: 0 0 0 10px;
+   	&:hover,
+   	&:focus{
+      	background-color: #fff;
+   	}
+	}
+	strong{
+	   display: inline-block;
+	   font-weight: normal;
+	   font-family: Consolas, monaco, monospace; 
+	   background-color: #fff;
+	   padding: 1px 6px 0;
+	   border-radius: 2px;
+	}
 }
-   .ajax-load-more p.warning-callout strong{
-      display: inline-block;
-      font-weight: normal;
-      font-family: Consolas,monaco,monospace; 
-      background-color: #edfbff;
-      color:#525c5f;
-      padding: 0 6px;
-      border-radius: 2px;
-   }
 .ajax-load-more p.warning-callout.notify{
-	background-color: #ad4141;
-	border-color: #903030;
+	background-color: #da5858;
+	border-color: #b94848;
 	color: #fff;
-}
-
-	.ajax-load-more p.warning-callout.notify strong{
-		background-color: #cb5858;
+	strong{
+		background-color: #9a4343;
 		color: #fff;
 	}
+}
 
 
 .ajax-load-more label,
@@ -959,8 +1002,13 @@ hr.indented{ // Indented as fake padding in shortcode builder
 }
 .ajax-load-more .section-title {
    float: left;
-   padding: 20px 0 20px 20px;
+   padding: 20px 0 25px 20px;
    width: 35%;
+   &.full{
+	   width: 100%;
+	   float: none;
+	   padding-right: 25px;
+   }
    p:last-of-type{
 	   margin-bottom: 0;
    }
@@ -969,22 +1017,17 @@ hr.indented{ // Indented as fake padding in shortcode builder
 	   padding-top: 8px;
 	   display: block;
    }
-}
-
-.ajax-load-more .section-title.full {
-   width: 100%;
-   float: none;
-}
-	.ajax-load-more .section-title h4{
+   h4{
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 15px;
-   }
-	.ajax-load-more .section-title p,
-	.ajax-load-more .wrap p.descriptor{
-		font-size: 13px;
-		line-height: 20px;
-		color: #999;
+   } 
+	 p,
+	 .wrap p.descriptor{
+			font-size: 13px;
+			line-height: 20px;
+			color: #999;
+		}
 	}
 	.ajax-load-more .wrap p.descriptor{
       margin: 0;
@@ -1393,7 +1436,7 @@ hr.indented{ // Indented as fake padding in shortcode builder
 .ajax-load-more h2.addon-title{
    font-size: 19px !important;
    line-height: 24px;
-   font-weight: 600 !important;
+   font-weight: 700 !important;
    color: #444 !important;
    padding: 0;
    margin: 0 0 10px;
@@ -1636,7 +1679,9 @@ table.highlight{
    flex-wrap: wrap;
    margin-bottom: 20px;
    border-top: 1px solid #e1e1e1; 
-   border-left: 1px solid #e1e1e1;   
+   border-left: 1px solid #e1e1e1;
+   background-color: #f7f7f7;
+   box-shadow: inset 0 0 0 1px #e1e1e1;
 }
 
 #alm-add-ons {}
@@ -2109,6 +2154,7 @@ table.highlight{
    	margin: 0;
    	display: block;
    	font-size: 15px;
+   	font-weight: 700;
    	text-transform: none;
    	border-radius: 2px 2px 0 0;
 	} 
@@ -2755,7 +2801,7 @@ p.theme-title{
 .alm-dir-listing.theme-repeaters ul li{
    display: block;
    width: 100%;
-   padding-top: 12px;
+   padding-top: 10px;
 }
 .alm-dir-listing.theme-repeaters ul li label{
    display: block;
@@ -2802,7 +2848,10 @@ p.theme-title{
 .shortcode-builder input[type=radio],
 .ajax-load-more .form-table input[type=checkbox],
 .ajax-load-more .form-table input[type=radio]{
-   display:none;
+   width: 0;
+   height: 0;
+   opacity: 0;
+   position: absolute;
 }
 
    .shortcode-builder input[type=checkbox] + label,
@@ -2821,7 +2870,7 @@ p.theme-title{
       cursor: pointer !important;
       span{
 	      display: inline-block;
-	      padding-left: 4px;
+	      padding-left: 1px;
 	      font-size: 12px;
 	      color: #999;
       }
@@ -2890,7 +2939,7 @@ p.theme-title{
       background-color: #f7f7f7;
       border-radius: 2px 2px 0 0; 
       color: $grey;
-      font-weight: 600;
+      font-weight: 700;
       position: relative;  
       cursor: pointer;
       &:focus,
@@ -3488,6 +3537,8 @@ p.theme-title{
 .alm-notification{
 	background: #6199c3 !important;
 	border-color: #3f7d9a !important;
+	padding: 20px;
+	margin: 0 0 20px;
 	&:hover{
    	a.dismiss{
       	opacity: 0.7;
@@ -3501,8 +3552,6 @@ p.theme-title{
       padding: 0 0 15px;
    }
    h2{
-	   padding-right: 50px;
-	   padding-left: 32px;
 	   line-height: 1.25;
 	   position: relative;
 	   color: #fff;

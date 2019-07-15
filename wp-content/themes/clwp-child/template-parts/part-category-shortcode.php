@@ -1,0 +1,1 @@
+<?php echo do_shortcode('[searchandfilter fields="firearm_types" hierarchical="1" headings="Types"]'); ?>

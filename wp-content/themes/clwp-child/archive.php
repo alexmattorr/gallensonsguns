@@ -1,28 +1,42 @@
-<?php
-/**
- * The template for displaying archive pages
- */
+<?php 
+  /*
+  Template Name: Products Archive
+  */
+  get_header();
 
-get_header(); ?>
+  $term = get_queried_object();
+  $cat = $query->taxonomy;
+  $parent = get_term($term->parent, $cat)->name;
 
-<div class="main-wrap" role="main">
-    <article class="main-content">
-        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-            <?php the_content(); ?>
-        <?php endwhile; endif; ?>
-        <?php
-        if ( function_exists( 'clwp_pagination' ) ) :
-            clwp_pagination();
-        elseif ( is_paged() ) :
-        ?>
-            <nav id="post-nav">
-                <div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'clwp' ) ); ?></div>
-                <div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'clwp' ) ); ?></div>
-            </nav>
-        <?php endif; ?>
+  $image = get_field('hero', $term)['sizes']['large'];;
+?>
+<section class="hero">
+  <div class="column" style="background-image: url('<?= $image; ?>');">
+    <div>
+      <h1><?= single_cat_title('', false); ?></h1>
+      <h3><?= $parent; ?></h3>
+    </div>
+  </div>
+</section>
 
-    </article>
-    <?php get_sidebar(); ?>
-</div>
+<section class="products-wrapper">
+  <?php get_template_part('template-parts/part', 'sidebar'); ?>
 
-<?php get_footer();
+  <div class="products">
+  <?php
+    if(have_posts()) : 
+      while(have_posts()) : the_post();
+  ?>
+    <div class="column">
+      <?php get_template_part('template-parts/part', 'product'); ?>
+    </div>
+  <?php
+      endwhile;
+    else:
+      echo '<div class="archive-404"><h2>No ' . single_cat_title('', false) . ' ' . $parent . ' found</h2>';
+    endif;
+  ?>
+  </div>
+</section>
+
+<?php get_footer(); ?>

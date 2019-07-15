@@ -15,25 +15,11 @@
 </section>
 
 
-<section>
-  <div class="row products">
-    <?php
-      $amount = get_sub_field('amount_to_show');
-      $query = array(
-        'post_type' => 'used_guns',
-        'posts_per_page' => 8,
-        'order' => 'DESC',
-        'orderby' => 'date',
-      );
-
-      $loop = new WP_Query($query);
-      while ( $loop->have_posts() ) : $loop->the_post();
-    ?>
-    <div class="column">
-      <?php get_template_part('template-parts/part', 'product'); ?>
-    </div>
-    <?php endwhile; wp_reset_query(); ?>
-  </div>
+<section class="products-wrapper">
+  <?php 
+    get_template_part('template-parts/part', 'sidebar');
+    get_template_part('template-parts/part', 'products');
+  ?>
 </section>
 
 <section class="bg-light-gray">
@@ -61,10 +47,6 @@
     </div>
   </div>
   <?php endif; ?>
-</section>
-
-<section>
-  <?= do_shortcode('[ajax_load_more scroll="false" container_type="div" css_classes="row products" post_type="used_guns" orderby="menu_order" posts_per_page="8" offset="8" post__not_in=' . $post_id_list . ' transition_container="false" button_label="View More" button_loading_label="Loading"]'); ?>
 </section>
 
 <?php get_footer();

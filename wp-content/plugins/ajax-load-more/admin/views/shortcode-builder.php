@@ -32,11 +32,11 @@
 	         				<p><?php _e('Place the following shortcode into the content editor or widget area of your theme.', 'ajax-load-more'); ?></p>
 	         				<div class="output-wrap">
 	         					<div id="shortcode_output"></div>
-	         				</div>
-	         				<p class="small reset-shortcode-builder"><a href="javascript:void(0);"><i class="fa fa-refresh"></i> <?php _e('Reset', 'ajax-load-more'); ?></a></p>
+	         				</div>	         				
 	      				</div>
 	      				<div class="major-publishing-actions">
 	   	   				<a class="button button-primary copy copy-to-clipboard"><?php _e('Copy Shortcode', 'ajax-load-more'); ?></a>
+	   	   				<p class="small reset-shortcode-builder"><a href="javascript:void(0);"><i class="fa fa-refresh"></i> <?php _e('Reset', 'ajax-load-more'); ?></a></p>
 	      				</div>
 	      	   	</div>
 		   	   </div>

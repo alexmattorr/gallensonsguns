@@ -1,0 +1,27 @@
+.single-brands {
+  .hero {
+    h1 {
+      margin-bottom: 0;
+    }
+
+    a.button {
+      margin-top: map-get($spacing, 20);
+    }
+  }
+
+  a.button {
+    width: 250px;
+  }
+}
+
+.brand-info {
+  img {
+    margin-bottom: map-get($spacing, 20);
+    max-width: 300px;
+    max-height: 200px;
+  }
+
+  a.button {
+    margin-top: map-get($spacing, 20);
+  }
+}

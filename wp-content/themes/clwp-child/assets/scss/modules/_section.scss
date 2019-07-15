@@ -27,3 +27,23 @@ section {
 .row {
   outline: none !important;
 }
+
+.column {
+  &.center {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.archive-404 {
+  display: flex;
+  width: 100%;
+
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+  }
+}

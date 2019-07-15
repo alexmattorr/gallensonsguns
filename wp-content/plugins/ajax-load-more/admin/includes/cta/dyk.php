@@ -36,7 +36,7 @@
    	</div>
    	<div class="text">
    	   <p class="addon-intro">You can lazy load single posts with Ajax Load More!</p>
-      	<p>The <a target="blank" style="font-weight: 600;" href="https://connekthq.com/plugins/ajax-load-more/add-ons/previous-post/?utm_source=WP%20Admin&utm_medium=ALM%20DYK&utm_campaign=PreviousPost">Previous Post</a> add-on will load single posts as you scroll and update the browser URL to the current post.</p>
+      	<p>The <a target="blank" style="font-weight: 600;" href="https://connekthq.com/plugins/ajax-load-more/add-ons/previous-post/?utm_source=WP%20Admin&utm_medium=ALM%20DYK&utm_campaign=PreviousPost">Single Post</a> add-on will load single posts as you scroll and update the browser URL to the current post.</p>
    	</div>
 	</div>
 	<div class="major-publishing-actions">

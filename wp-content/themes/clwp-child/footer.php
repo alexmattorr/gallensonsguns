@@ -88,7 +88,7 @@
                             $type = get_sub_field('type');
                 ?>
                 <li>
-                    <a href="<?= $link; ?>" target="_blank">
+                    <a class="social-<?= $type; ?>" href="<?= $link; ?>" target="_blank">
                         <?php include( get_stylesheet_directory() . '/assets/images/icons/social/' . $type . '.svg' ); ?>
                     </a>
                 </li>
@@ -110,7 +110,6 @@
     <div class="modal-bg"></div>
 
     <?php
-        get_template_part('template-parts/part', 'google-analytics');
         do_action( 'clwp_layout_end' ); 
         wp_footer();
         do_action( 'clwp_before_closing_body' );

@@ -137,6 +137,9 @@
 	                     <ul>
 	                        <li><?php _e('License keys are found in the purchase receipt email that was sent immediately after purchase and in the <a target="_blank" href="https://connekthq.com/account/">Account</a> section on our website', 'ajax-load-more');?></li>
 	                        <li><?php _e('If you cannot locate your key please open a support ticket by filling out the <a href="https://connekthq.com/contact/">support form</a> and reference the email address used when you completed the purchase.', 'ajax-load-more'); ?></li>
+	                        <li>
+	                        <strong><?php _e('Are you having issues updating an addon?', 'ajax-load-more'); ?></strong><br/>
+	                        <?php _e('Please try deactivating and then re-activating each license. Once you’ve done that, try running the update again.', 'ajax-load-more'); ?></li>
 	                     </ul>
 	                  </div>
 	                  <div class="major-publishing-actions">

@@ -114,7 +114,9 @@
                </ul>
    			</div>
          </div>
-
+         
+         <div class="clear"></div>
+         <hr>
          <p class="warning-callout">
             <?php _e('Visit <a href="http://v2.wp-api.org/" target="_blank">http://v2.wp-api.org</a> for documentation on creating custom <a href="http://v2.wp-api.org/extending/adding/" target="_blank">Endpoints</a> for use with Ajax Load More.', 'ajax-load-more'); ?>
          </p>
